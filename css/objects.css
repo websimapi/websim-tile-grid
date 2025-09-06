@@ -1,0 +1,301 @@
+/* --- Generic Object Styles --- */
+.tree, .cactus, .log-item, .cactus-piece, .stone-item, .copper-ore-item, .wheat-item, .bamboo, .bamboo-item, .oven, .wheat-seeds-item, .potato-item, .potato-seeds-item, .coal-item {
+    will-change: transform, opacity;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.log-item, .cactus-piece, .rock, .stone-item, .copper-rock, .copper-ore-item, .desert-copper-rock, .wheat-item, .bamboo-item, .coal-rock, .coal-item {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- Specific Object Styles --- */
+
+.oven {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url("/Oven.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.tree {
+    position: absolute;
+    width: 48px;
+    height: 69px;
+    background-image: url("/Tree (1).png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1; /* Default, will be updated by JS */
+    transform-origin: bottom center;
+    transition: opacity 0.2s ease-in;
+    animation: tree-sway 5s ease-in-out infinite;
+}
+
+.tree.jungle-tree {
+    width: 64px;
+    height: 69px;
+}
+
+.tree.falling {
+    opacity: 0;
+    animation: none; /* Stop swaying when falling */
+}
+
+.tree.on-fire {
+    animation: fire-flicker 0.5s steps(1, end) infinite, tree-sway 5s ease-in-out infinite;
+    background-image: url(/FireTree.png); /* a default frame */
+}
+
+.tree.jungle-tree.on-fire {
+    animation-name: jungle-fire-flicker, tree-sway;
+    background-image: url(/JungleTreeOnFire.png);
+}
+
+.tree.snow-tree.on-fire {
+    animation-name: snow-fire-flicker, tree-sway;
+    background-image: url(/FireSnowTree.png);
+}
+
+.farmland-overlay {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0; /* Rendered under other objects, but on top of tiles */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.cactus {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background-image: url("/Cactus.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1; /* Default, will be updated by JS */
+    transform-origin: bottom center;
+    transition: opacity 0.2s ease-in;
+    animation: cactus-sway 4s ease-in-out infinite;
+}
+
+.cactus.falling {
+    opacity: 0;
+    animation: none;
+}
+
+.ice-structure {
+    position: absolute;
+    width: 40px;
+    height: 48px;
+    background-image: url("/IceStructure.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    transform-origin: bottom center;
+}
+
+.ice-chunk {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("/IceChunk.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.ice-medalion {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("/IceMedalion.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.log-item {
+    width: 40px;
+    height: 25px;
+    background-image: url("/LogTexture.png");
+}
+
+.cactus-piece {
+    width: 30px;
+    height: 30px;
+    background-image: url("/cactusPiece.png");
+}
+
+.stone-item {
+    width: 30px;
+    height: 30px;
+    background-image: url("/Rocky.png");
+}
+
+.copper-ore-item {
+    width: 30px;
+    height: 30px;
+    background-image: url("/CopperRocky.png");
+}
+
+.rock {
+    width: 40px;
+    height: 32px;
+    background-image: url("/DesertRock.png");
+    background-position: bottom;
+}
+
+.copper-rock {
+    width: 40px;
+    height: 32px;
+    background-image: url("/CopperRock.png");
+    background-position: bottom;
+}
+
+.desert-copper-rock {
+    width: 40px;
+    height: 32px;
+    background-image: url("/DesertCopper.png");
+    background-position: bottom;
+}
+
+.rock.breaking {
+    background-image: url("/aaaaaaaa.gif");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.tumbleweed {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url("/TumbWeed.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1; /* Default, will be updated by JS */
+    transform-origin: center;
+    will-change: transform, opacity;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.campfire {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: campfire-flicker 0.6s steps(1, end) infinite;
+}
+
+.bamboo {
+    position: absolute;
+    width: 48px;
+    height: 69px;
+    background-image: url("/bamboo.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1; /* Default, will be updated by JS */
+    transform-origin: bottom center;
+    transition: opacity 0.2s ease-in;
+    animation: tree-sway 5s ease-in-out infinite;
+}
+
+.bamboo.falling {
+    opacity: 0;
+    animation: none; /* Stop swaying when falling */
+}
+
+.bamboo-item {
+    width: 30px;
+    height: 30px;
+    background-image: url("/bamboo.png");
+}
+
+/* This container is no longer used for trees/cacti */
+#object-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+#virtual-object-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.wheat-seeds-item {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("/WheatSeedsTexture.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.potato-item {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("/Potato - Copy.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.potato-seeds-item {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("/PotatoSeeds.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.coal-item {
+    width: 30px;
+    height: 30px;
+    background-image: url("/CoalTexture1.png");
+}
+
+.coal-rock {
+    width: 40px;
+    height: 32px;
+    background-image: url("/CoalRock.png");
+    background-position: bottom;
+}

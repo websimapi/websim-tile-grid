@@ -1,0 +1,31 @@
+#player {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+
+    position: absolute; 
+    z-index: 10; 
+    will-change: transform, z-index, top, left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#held-item {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: none; 
+    transform: translate(12px, 5px); 
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}

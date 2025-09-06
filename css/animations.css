@@ -1,0 +1,45 @@
+@keyframes highlight-animation {
+    0%, 100% { background-image: url(/Highlight.png); }
+    25%, 75% { background-image: url(/Highlight1.png); }
+    50% { background-image: url(/Highlight2.png); }
+}
+
+@keyframes campfire-flicker {
+    0% { background-image: url(/Campfire1.png); }
+    33.333% { background-image: url(/Campfire.png); }
+    66.666% { background-image: url(/Campfire2.png); }
+    100% { background-image: url(/Campfire1.png); }
+}
+
+@keyframes fire-flicker {
+    0%, 100% { background-image: url(/FireTree.png); }
+    50% { background-image: url(/FireTree1.png); }
+}
+
+@keyframes jungle-fire-flicker {
+    0%, 100% { background-image: url(/JungleTreeOnFire.png); }
+    50% { background-image: url(/JungleTreeOnFire1.png); }
+}
+
+@keyframes snow-fire-flicker {
+    0%, 100% { background-image: url(/FireSnowTree.png); }
+    50% { background-image: url(/FireSnowTree1.png); }
+}
+
+@keyframes cactus-sway {
+    0%, 100% {
+        transform: rotate(-0.5deg);
+    }
+    50% {
+        transform: rotate(0.5deg);
+    }
+}
+
+@keyframes tree-sway {
+    0%, 100% {
+        transform: rotate(-1deg);
+    }
+    50% {
+        transform: rotate(1deg);
+    }
+}

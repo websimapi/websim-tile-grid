@@ -1,0 +1,371 @@
+/* --- UI Elements --- */
+#interaction-prompt {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url(/E.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: none; /* Initially hidden */
+    pointer-events: none;
+    z-index: 100; /* Above everything */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#tooltip {
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(8px, 8px);
+    padding: 6px 8px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    line-height: 1.2;
+    pointer-events: none;
+    z-index: 1005;
+    display: none;
+    white-space: nowrap;
+}
+
+#hunger-bar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+    z-index: 1002;
+    justify-content: flex-end;
+}
+
+.hunger-icon {
+    width: 32px;
+    height: 32px;
+    background-image: url("/HungerTexture.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#fps-counter {
+    position: fixed;
+    top: calc(50px + 200px + 8px);
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    z-index: 1000;
+    text-shadow: 1px 1px 0 #000;
+}
+
+#minimap {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #ecf0f1;
+    background-color: #1a5147;
+    z-index: 1001;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#hotbar-container {
+    position: fixed;
+    top: 14px;
+    left: 10px;
+    transform: none;
+    display: grid; /* was: flex */
+    grid-template-columns: repeat(5, 72px) 72px; /* 5 slots + backpack */
+    gap: 8px;
+    z-index: 1002; /* Above minimap */
+    padding: 0; /* remove padding to align with inventory grid */
+    background-color: transparent;
+    border-radius: 12px;
+    border: none;
+    align-items: center; /* ensure vertical alignment */
+}
+
+.backpack-btn {
+    width: 72px;
+    height: 72px;
+    background-image: url(/Backpack.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    transition: transform 0.12s ease-out;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.backpack-btn:hover {
+    transform: scale(1.15);
+}
+
+.hotbar-slot {
+    width: 72px;
+    height: 72px;
+    background-image: url("/Hotbar (1).png");
+    background-size: cover;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;         /* anchor .item-count */
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-shadow: 2px 2px 0 #000;
+    transition: transform 0.1s ease-out;
+}
+
+.hotbar-slot.selected {
+    transform: scale(1.15);
+    z-index: 2;
+}
+
+.hotbar-item {
+    width: 60px; /* Smaller than slot */
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-count {
+    position: absolute;
+    bottom: 4px;
+    right: 7px;
+    font-size: 16px;
+}
+
+#spawn-tumbleweed-btn {
+    position: fixed;
+    top: 60px; /* Below FPS counter */
+    left: 10px;
+    z-index: 1001;
+    display: none; /* Initially hidden */
+    padding: 8px 12px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 2px solid #ecf0f1;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+}
+
+#spawn-tumbleweed-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#reset-progress-btn {
+    position: fixed;
+    top: calc(50px + 200px + 8px + 40px);
+    right: 10px;
+    z-index: 1001;
+    padding: 8px 12px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    background-color: rgba(0,0,0,0.7);
+    color: #fff;
+    border: 2px solid #ecf0f1;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+}
+
+#reset-progress-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#inventory-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0; /* remove padding so grid aligns precisely */
+    z-index: 1003;
+    background: transparent; /* no frame/background */
+    pointer-events: none; /* don't block gameplay */
+}
+
+#inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 72px);
+    gap: 8px;
+    position: fixed;
+    top: auto; /* will be set dynamically under hotbar */
+    left: auto; /* will be set dynamically under hotbar */
+    z-index: 1004;
+    pointer-events: auto; /* allow clicks if needed later */
+}
+
+#equipment-slots {
+    display: grid;
+    grid-template-columns: 72px;
+    gap: 8px;
+    position: fixed;
+    top: auto;
+    left: auto;
+    z-index: 1004;
+    pointer-events: auto;
+}
+
+.inventory-slot,
+.equipment-slot {
+    width: 72px;
+    height: 72px;
+    background-image: url("/Hotbar (1).png");
+    background-size: cover;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: flex;              /* center like hotbar */
+    align-items: center;        /* center like hotbar */
+    justify-content: center;    /* center like hotbar */
+    position: relative;         /* anchor .item-count */
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.equipment-slot {
+    background-image: url("/CraftingSlot.png");
+}
+
+#inventory-left-panel {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-auto-rows: 72px;
+    gap: 8px;
+    z-index: 1004;
+    pointer-events: auto;
+    transition: all 0.2s ease-out; /* Add transition for smooth expansion */
+}
+
+#crafting-scroll-indicator {
+    position: fixed;
+    left: calc(10px + 72px + 4px); /* Next to the crafting panel */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1004;
+    pointer-events: none;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 1px 1px 0 #000;
+    font-size: 12px;
+}
+
+.scroll-arrow {
+    visibility: hidden; /* Hide by default, JS will show them */
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.temp-slot {
+    width: 72px;
+    height: 72px;
+    background-image: url("/CraftingSlot.png");
+    background-size: cover;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.temp-slot .craft-campfire {
+    width: 60px;
+    height: 60px;
+    margin: 6px auto 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: campfire-flicker 0.6s steps(1, end) infinite;
+}
+
+#craft-sprinkler {
+    background-image: url(/Sprinkler.png);
+}
+
+.temp-item {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 6px auto 0;
+}
+
+#mute-button {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.5);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1010;
+    transition: background-color 0.2s;
+}
+
+#mute-button::before {
+    content: '🔊';
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+}
+
+#mute-button[aria-pressed="true"]::before {
+    content: '🔇';
+}
+
+#mute-button:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+#item-toast{
+    position:fixed;
+    bottom:16px;
+    left:50%;
+    transform:translateX(-50%);
+    padding:6px 10px;
+    font-family:'Press Start 2P',cursive;
+    font-size:12px;
+    color:#fff;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 0 1px 0 #000, 1px 0 0 #000, 0 -1px 0 #000, -1px 0 0 #000;
+    pointer-events:none;
+    transition: opacity .25s ease;
+    opacity:0;
+}
+
+#item-toast.visible{
+    opacity:1;
+    transform:translateX(-50%);
+}

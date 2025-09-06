@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    min-height: 100vh;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+body::after {
+    display: none;
+}
+
+#game-world {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#grid-container {
+    border: none;
+    box-shadow: none;
+    /* Will be positioned by JS for camera */
+    position: absolute; 
+    /* The grid layout will be set dynamically by JS */
+    display: grid;
+    background-color: #1a5147; /* Dark green to hide seams */
+}
+
+.grid-tile {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+}
+
+.special-tile-bg {
+    background-color: #3a8f7d; /* Grass color as a base for transparent special tiles */
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, cover;
+}
+
+.grid-tile-rotated {
+    transform: rotate(180deg);
+}
+
+.grid-tile-flipped-x {
+    transform: scaleX(-1);
+}
+
+#tile-highlighter {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: none; /* Initially hidden */
+    pointer-events: none; /* To not interfere with other mouse events */
+    z-index: 0;
+    animation: highlight-animation 0.8s infinite steps(1, end);
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+#tile-highlighter::before,
+#tile-highlighter::after {
+    display: none;
+}
+
+/* Top-left and bottom-right corners */
+#tile-highlighter::before {
+    top: 0;
+    left: 0;
+    border-width: 2px 0 0 2px; /* Top and left borders */
+    border-bottom-right-radius: 4px; /* Optional: adds a slight curve */
+}
+
+/* Top-right and bottom-left corners */
+#tile-highlighter::after {
+    bottom: 0;
+    right: 0;
+    border-width: 0 2px 2px 0; /* Bottom and right borders */
+    border-top-left-radius: 4px; /* Optional: adds a slight curve */
+}
+
+#game-world, #grid-container, .grid-tile, .tree, .cactus, .rock, .tumbleweed, .log-item, .cactus-piece, .stone-item {
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    background-color: #1a2b28;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#loading-screen.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loading-text {
+    font-family: 'Press Start 2P', cursive;
+    color: #ecf0f1;
+    font-size: 24px;
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 20px;
+}
+
+#start-game-prompt {
+    font-family: 'Press Start 2P', cursive;
+    color: #bdc3c7;
+    font-size: 14px;
+    text-shadow: 1px 1px 0 #000;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
